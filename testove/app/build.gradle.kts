@@ -50,6 +50,9 @@ android {
 }
 
 dependencies {
+    implementation ("io.insert-koin:koin-android:3.4.0")
+    implementation ("io.insert-koin:koin-core:3.4.0")
+    implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
