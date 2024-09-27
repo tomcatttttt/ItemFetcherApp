@@ -1,4 +1,4 @@
-package com.many.to.many.item.fetcher.app.data
+package com.many.to.many.item.fetcher.app.data.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,13 +1,17 @@
-package com.many.to.many.item.fetcher.app.presentation
+package com.many.to.many.item.fetcher.app.presentation.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.many.to.many.item.fetcher.app.domain.ItemRepository
+import com.many.to.many.item.fetcher.app.data.ItemState
+import com.many.to.many.item.fetcher.app.domain.usecases.GetItemsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ItemViewModel(private val repository: ItemRepository) : ViewModel() {
+// presentation/ItemViewModel.kt
+class ItemViewModel(
+    private val getItemsUseCase: GetItemsUseCase
+) : ViewModel() {
 
     private val _state = MutableStateFlow(ItemState())
     val state: StateFlow<ItemState> = _state
@@ -18,8 +22,7 @@ class ItemViewModel(private val repository: ItemRepository) : ViewModel() {
 
     fun fetchItems() {
         viewModelScope.launch {
-            _state.value = ItemState(isLoading = true)
-            val result = repository.getItems()
+            val result = getItemsUseCase()
             result.fold(
                 onSuccess = { itemResponse ->
                     _state.value = ItemState(items = itemResponse.items, category = itemResponse.title)
@@ -31,3 +34,5 @@ class ItemViewModel(private val repository: ItemRepository) : ViewModel() {
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-package com.many.to.many.item.fetcher.app.presentation
+package com.many.to.many.item.fetcher.app.data
 
 import com.many.to.many.item.fetcher.app.data.Item
 

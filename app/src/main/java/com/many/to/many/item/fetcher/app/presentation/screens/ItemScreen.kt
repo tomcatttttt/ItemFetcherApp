@@ -1,7 +1,12 @@
-package com.many.to.many.item.fetcher.app.presentation
+package com.many.to.many.item.fetcher.app.presentation.screens
 
 import android.annotation.SuppressLint
+import android.net.Uri
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,12 +19,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.many.to.many.item.fetcher.app.presentation.vm.ItemViewModel
+import com.many.to.many.item.fetcher.app.ui.compomemts.CustomLoader
+import com.many.to.many.item.fetcher.app.ui.compomemts.ItemCard
+import com.many.to.many.item.fetcher.app.ui.compomemts.SvgIcon
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemScreen(viewModel: ItemViewModel = koinViewModel()) {
+fun ItemScreen(navController: NavController, viewModel: ItemViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsState()
 
     Scaffold(
@@ -83,7 +93,31 @@ fun ItemScreen(viewModel: ItemViewModel = koinViewModel()) {
                     verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
                     items(state.items) { item ->
-                        ItemCard(item)
+                        var visible by remember { mutableStateOf(false) }
+                        LaunchedEffect(Unit) {
+                            visible = true
+                        }
+
+                        AnimatedVisibility(
+                            visible = visible,
+                            enter = slideInVertically(
+                                initialOffsetY = { -100 },
+                                animationSpec = tween(500)
+                            )
+                        ) {
+                            ItemCard(
+                                item = item,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        val encodedName = Uri.encode(item.name)
+                                        val encodedImage = Uri.encode(item.image)
+                                        val encodedColor = Uri.encode(item.color)
+                                        navController.navigate("details/${item.id}/$encodedName/$encodedImage/$encodedColor")
+                                    }
+                                    .padding(vertical = 2.dp)
+                            )
+                        }
                     }
                 }
             }

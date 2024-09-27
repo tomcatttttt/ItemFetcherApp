@@ -1,4 +1,4 @@
-package com.many.to.many.item.fetcher.app
+package com.many.to.many.item.fetcher.app.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.many.to.many.item.fetcher.app.presentation.ItemScreen
+import com.many.to.many.item.fetcher.app.presentation.screens.MainScreen
 import com.many.to.many.item.fetcher.app.ui.theme.ItemFetcherAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ItemScreen()
+                    MainScreen()
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.many.to.many.item.fetcher.app.presentation
+package com.many.to.many.item.fetcher.app.ui.compomemts
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode

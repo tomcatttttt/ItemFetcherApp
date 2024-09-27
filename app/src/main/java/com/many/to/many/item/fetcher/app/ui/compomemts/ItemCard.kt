@@ -1,4 +1,4 @@
-package com.many.to.many.item.fetcher.app.presentation
+package com.many.to.many.item.fetcher.app.ui.compomemts
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -16,22 +16,25 @@ import coil.compose.rememberImagePainter
 import com.many.to.many.item.fetcher.app.data.Item
 
 @Composable
-fun ItemCard(item: Item) {
+fun ItemCard(
+    item: Item,
+    modifier: Modifier = Modifier
+) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color(android.graphics.Color.parseColor("#${item.color}"))
         ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+        modifier = modifier
+            .padding(horizontal = 32.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(6.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(24.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = item.name,
@@ -48,7 +51,8 @@ fun ItemCard(item: Item) {
                     }
                 ),
                 contentDescription = item.name,
-                modifier = Modifier.size(100.dp),
+                modifier = Modifier
+                    .size(80.dp),
                 contentScale = ContentScale.Fit
             )
         }
