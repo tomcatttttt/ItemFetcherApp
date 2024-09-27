@@ -1,6 +1,7 @@
 package com.many.to.many.item.fetcher.app.domain
 
 import com.many.to.many.item.fetcher.app.data.ApiService
+import com.many.to.many.item.fetcher.app.data.Item
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
