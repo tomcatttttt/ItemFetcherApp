@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-// presentation/ItemViewModel.kt
 class ItemViewModel(
     private val getItemsUseCase: GetItemsUseCase
 ) : ViewModel() {
