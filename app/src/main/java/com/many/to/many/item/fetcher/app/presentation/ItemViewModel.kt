@@ -21,8 +21,8 @@ class ItemViewModel(private val repository: ItemRepository) : ViewModel() {
             _state.value = ItemState(isLoading = true)
             val result = repository.getItems()
             result.fold(
-                onSuccess = { items ->
-                    _state.value = ItemState(items = items)
+                onSuccess = { itemResponse ->
+                    _state.value = ItemState(items = itemResponse.items, category = itemResponse.title)
                 },
                 onFailure = { error ->
                     _state.value = ItemState(error = error.message)
