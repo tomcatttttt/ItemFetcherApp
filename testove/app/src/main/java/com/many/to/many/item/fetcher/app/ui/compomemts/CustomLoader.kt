@@ -9,7 +9,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -20,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.many.to.many.item.fetcher.app.R
 
 @Composable
-fun CustomLoader() {
+fun CustomLoader(modifier: Modifier = Modifier) {
     val infiniteTransition = rememberInfiniteTransition()
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
@@ -31,12 +34,18 @@ fun CustomLoader() {
         ), label = ""
     )
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp)
+            .wrapContentSize(Alignment.TopCenter),
+        contentAlignment = Alignment.TopCenter
+    ) {
         Image(
             painter = painterResource(id = R.drawable.loader),
             contentDescription = "Loading",
             modifier = Modifier
-                .size(100.dp)
+                .size(40.dp)
                 .rotate(rotation)
         )
     }

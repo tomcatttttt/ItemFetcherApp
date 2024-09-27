@@ -25,7 +25,6 @@ import com.many.to.many.item.fetcher.app.ui.compomemts.CustomLoader
 import com.many.to.many.item.fetcher.app.ui.compomemts.ItemCard
 import com.many.to.many.item.fetcher.app.ui.compomemts.SvgIcon
 import org.koin.androidx.compose.koinViewModel
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,11 +68,12 @@ fun ItemScreen(navController: NavController, viewModel: ItemViewModel = koinView
                         .fillMaxSize()
                         .padding(paddingValues)
                         .background(Color.White),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.TopCenter
                 ) {
-                    CustomLoader()
+                    CustomLoader(modifier = Modifier.padding(top = 16.dp))
                 }
             }
+
             state.error != null -> {
                 Text(
                     text = state.error ?: "Unknown error",

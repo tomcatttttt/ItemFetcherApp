@@ -75,8 +75,17 @@ fun ItemDetailsScreen(
         ) {
             when {
                 state.isLoading -> {
-                    CustomLoader()
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(paddingValues)
+                            .background(Color.White),
+                        contentAlignment = Alignment.TopCenter
+                    ) {
+                        CustomLoader(modifier = Modifier.padding(top = 16.dp))
+                    }
                 }
+
                 state.error != null -> {
                     Text(
                         text = state.error ?: "Error loading details",
